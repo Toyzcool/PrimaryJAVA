@@ -1,5 +1,5 @@
-package com.primary;
-/*
+package com.primary.newBulidMethod;
+/*知识点：构造方法
  * 构造方法用途：创建对象
  * 特点：
  * 1.与类同名，但是没有返回值
