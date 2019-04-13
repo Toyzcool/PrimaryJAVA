@@ -1,4 +1,4 @@
-package polymorphic;
+package com.primary.polymorphic;
 
 public class Animal {
 	//方法的多态

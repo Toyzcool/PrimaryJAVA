@@ -1,4 +1,4 @@
-package polymorphic;
+package com.primary.polymorphic;
 /*多态、引用类型转换
  * 引用多态：引用，oj2相当于Dog对象的标签，未分配给oj2内存。与String c = "b"赋值不同！！！
  * 1.父类引用可以指向本类的对象
