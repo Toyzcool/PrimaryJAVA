@@ -93,6 +93,21 @@ public class ListTest {
 			System.out.println("第"+temp.id+"门课程为："+temp.name);
 		}
 	}
+	//建立修改课程的方法
+	@SuppressWarnings("unchecked")
+	public void testModify() {
+		courseToSelect.set(0, new Course("7","头皮发麻"));
+	}
+	//建立删除课程的方法
+	public void testRemove() {
+		//先获取并提示即将删除的课程
+		Course course = (Course) courseToSelect.get(3);
+		System.out.println("即将删除3位置ID为"+course.id+"的课程："+course.name);
+		//执行删除操作
+		courseToSelect.remove(3);
+		//检查是否删除
+		testForEach();
+	}
 	
 	public static void main(String[] args) {
 		//实现存储课程方法
@@ -106,6 +121,10 @@ public class ListTest {
 		ListTest lt3 = new ListTest();
 		lt3.testAdd1();
 		lt3.testForEach();
-
+		//实现课程修改
+		lt3.testModify();
+		lt3.testForEach();
+		//实现课程删除
+		lt3.testRemove();
 	}
 }

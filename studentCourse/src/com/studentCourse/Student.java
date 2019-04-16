@@ -6,7 +6,9 @@ import java.util.Set;
 public class Student {
 	public String id;
 	public String name;
+	@SuppressWarnings("rawtypes")
 	public Set courses;
+	@SuppressWarnings("rawtypes")
 	public Student(String id, String name) {
 		super();
 		this.id = id;
