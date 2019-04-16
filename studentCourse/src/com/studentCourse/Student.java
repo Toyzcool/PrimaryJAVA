@@ -7,7 +7,7 @@ public class Student {
 	public String id;
 	public String name;
 	@SuppressWarnings("rawtypes")
-	public Set courses;
+	public Set<Course> courses;
 	@SuppressWarnings("rawtypes")
 	public Student(String id, String name) {
 		super();
