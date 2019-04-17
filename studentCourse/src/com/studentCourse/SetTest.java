@@ -29,12 +29,16 @@ public class SetTest {
 		}
 	}
 	//使用contain的方法确认是否已存在课程——Course类的equals方法
+	@SuppressWarnings("unlikely-arg-type")
 	public void testContain() {
 		//获取用户希望搜索的课程
 		System.out.println("请输入想查找的课程");
 		String courseName = console.next();
+		//需要将courseName输入到Course类中
+		Course course = new Course();
+		course.name = courseName;
 		//调用Course类中重写的equals判断相同的方法
-		System.out.println("希望查找的课程为："+courseName+"——"+"查找结果为:"+courseToSelect.equals(courseName));
+		System.out.println("希望查找的课程为："+courseName+"——"+"查找结果为:"+courseToSelect.contains(course));
 	}
 
 	
