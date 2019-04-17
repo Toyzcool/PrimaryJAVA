@@ -6,48 +6,49 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class MapTest {
-	//新建一个map类,用于承载学生对象
+	//定义map类变量
 	public Map<String,Student> student;
-	//构造器中初始化student属性
+	//构造方法初始化变量
 	public MapTest() {
 		this.student = new HashMap<String,Student>();
 	}
-	//新建添加学生的方法，
+	//新建添加学生方法，如果已存在该学生，则直接输出已经在学生的姓名
 	public void testPut() {
+		//获取用户输入的ID
+		@SuppressWarnings("resource")
 		Scanner console = new Scanner(System.in);
+		//循环输入三个学生信息
 		int i = 0;
-		while (i < 3) {
-			System.out.println("请输入希望添加的学生ID");
-			//获取用户输入的学生id
-			String ID = console.next();
-			//判断id是否重复
-			Student id = student.get(ID);
-			//如果未被占用，则添加该学生信息
-			if( id == null ) {
+		while(i < 3) {
+			System.out.println("请输入想要添加的学生ID");
+			String inputId = console.next();
+			//新建变量存储ID检索到的学生
+			Student inputStu = student.get(inputId);
+			//判断检索结果是否为空
+			if( inputStu == null ) {
 				System.out.println("请输入学生姓名");
-				//获取学生姓名
-				String Name = console.next();
-				//新建学生对象
-				Student stu = new Student(ID,Name);
-				//使用student的Put方法，添加学生
-				student.put(ID, stu);
-				System.out.println("成功添加学生"+student.get(ID).name);
+				//获取用户添加的学生姓名
+				String stuName = console.next();
+				//新建学生类型
+				Student newStu = new Student(inputId,stuName);
+				//将学生添加到学生列表中
+				student.put(inputId, newStu);
 				i++;
 			}else {
-				System.out.println("当前ID已经存在");
+				System.out.println("学生已存在，且姓名为："+inputStu.name);
+				continue;
 			}
-			
 		}
 	}
-	//测试Map的KeySet方法
-	public void testKeySet() {
-		//通过KeySet方法，返回Map中的所有键
-		Set<String> keySet = student.keySet();
+	//新建获取map中的键值方法
+	public void getKey() {
+		Set<String> key = student.keySet();
 		System.out.println("学生列表如下");
-		//用for-each循环输出结果
-		for(String stu : keySet) {
-			Student st = student.get(stu);
-			System.out.println(st.id+"."+st.name);
+		//使用for-each方法输出学生列表
+		for(String stu : key) {
+			//新建学生类用于存储获取到的学生类型和内容
+			Student getStu = student.get(stu);
+			System.out.println(getStu.id+"."+getStu.name);
 		}
 	}
 
@@ -55,7 +56,8 @@ public class MapTest {
 		// TODO Auto-generated method stub
 		MapTest mt = new MapTest();
 		mt.testPut();
-		mt.testKeySet();
+		mt.getKey();
+
 	}
 
 }
