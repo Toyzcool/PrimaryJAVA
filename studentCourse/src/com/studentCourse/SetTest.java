@@ -10,10 +10,12 @@ import java.util.Scanner;
  */
 public class SetTest {
 	public List<Course> courseToSelect;
+	private Scanner console;
 	//构造方法
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SetTest() {
 		this.courseToSelect = new ArrayList();
+		this.console = new Scanner(System.in);
 	}
 	//创建课程表方法，并添加课程
 	public void addCourse() {
@@ -26,13 +28,23 @@ public class SetTest {
 			System.out.println("课程"+c2.id+"："+c2.name);
 		}
 	}
+	//使用contain的方法确认是否已存在课程——Course类的equals方法
+	public void testContain() {
+		//获取用户希望搜索的课程
+		System.out.println("请输入想查找的课程");
+		String courseName = console.next();
+		//调用Course类中重写的equals判断相同的方法
+		System.out.println("希望查找的课程为："+courseName+"——"+"查找结果为:"+courseToSelect.equals(courseName));
+	}
 
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SetTest st1 = new SetTest();
 		st1.addCourse();
+		//查找课程
 		st1.forEachCourse();
+		st1.testContain();
 		//创建一个学生类
 		Student stu = new Student("1","Toyz");
 		System.out.println("欢迎学生"+stu.name+"来选课");
