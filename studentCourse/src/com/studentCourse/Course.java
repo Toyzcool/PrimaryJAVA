@@ -11,6 +11,7 @@ public class Course {
 		
 	}
 	//新建判断是否已经包含课程的方法
+	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) {
 			return true;
