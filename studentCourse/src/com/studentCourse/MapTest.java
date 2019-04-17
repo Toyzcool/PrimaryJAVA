@@ -9,9 +9,11 @@ import java.util.Set;
 public class MapTest {
 	//定义map类变量
 	public Map<String,Student> student;
+	private Scanner console;
 	//构造方法初始化变量
 	public MapTest() {
 		this.student = new HashMap<String,Student>();
+		this.console = new Scanner(System.in);
 	}
 	/*
 	 * 新建添加学生方法，如果已存在该学生，则直接输出已经在学生的姓名
@@ -113,12 +115,39 @@ public class MapTest {
 			break;
 		}
 	}
+	/*
+	 * 测试Map中，是否包含某个Key值或者Value值
+	 */
+	public void testContainsKeyOrValue() {
+		//获取用户查询的学生ID
+		System.out.println("请输入查询的学生ID");
+		String inputId = console.next();
+		//用containKey()方法判断是否存在
+		System.out.println("您输入的学生"+inputId+"存在情况为："+student.containsKey(inputId));
+		if(student.containsKey(inputId)) {
+			System.out.println("学生ID为："+inputId+"学生，姓名为："+student.get(inputId).name);
+		}else {
+			System.out.println("您查询的学生不存在");
+		}
+		//获取用户查询的学生姓名
+		System.out.println("请输入查询的学生姓名");
+		String inputName = console.next();
+		//用containValue()方法判断是否存在，需要在Student类中重写hasHash方法——Student.java
+				System.out.println("您输入的学生"+inputName+"存在情况为："+student.containsValue(new Student(null,inputName)));
+				if(student.containsValue(new Student(null,inputName))) {
+					System.out.println("学生列表中确实包含学生："+inputName);
+				}else {
+					System.out.println("您查询的学生不存在");
+				}
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MapTest mt = new MapTest();
 		mt.testPut();
 		mt.getKey();
+		//使用查询学生方法
+		mt.testContainsKeyOrValue();
 		//使用删除学生的方法
 		mt.testRemove();
 		//使用entry方法遍历输出

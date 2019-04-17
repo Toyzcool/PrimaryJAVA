@@ -38,14 +38,22 @@ public class SetTest {
 		course.name = courseName;
 		//调用Course类中重写的equals判断相同的方法
 		System.out.println("希望查找的课程为："+courseName+"——"+"查找结果为:"+courseToSelect.contains(course));
+		/*
+		 * 使用indexOf方法获取索引内容所在位置
+		 * 如果重复，仅输出第一个搜索到的结果。反向用：lastIndexOf
+		 */
+		if(courseToSelect.contains(course)) {
+			System.out.println("------位置结果------");
+			System.out.println("课程："+course.name+"位置为："+courseToSelect.indexOf(course));
+		}
 	}
-	//使用
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SetTest st1 = new SetTest();
 		st1.addCourse();
-		//查找课程
+		//查找课程，并输出所属位置
 		st1.forEachCourse();
 		st1.testContain();
 		//创建一个学生类
