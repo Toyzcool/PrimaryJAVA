@@ -39,6 +39,7 @@ public class SetTest {
 		//调用Course类中重写的equals判断相同的方法
 		System.out.println("希望查找的课程为："+courseName+"——"+"查找结果为:"+courseToSelect.contains(course));
 	}
+	//使用
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
