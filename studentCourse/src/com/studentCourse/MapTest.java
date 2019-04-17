@@ -2,6 +2,7 @@ package com.studentCourse;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -12,7 +13,9 @@ public class MapTest {
 	public MapTest() {
 		this.student = new HashMap<String,Student>();
 	}
-	//新建添加学生方法，如果已存在该学生，则直接输出已经在学生的姓名
+	/*
+	 * 新建添加学生方法，如果已存在该学生，则直接输出已经在学生的姓名
+	 */
 	public void testPut() {
 		//获取用户输入的ID
 		@SuppressWarnings("resource")
@@ -40,7 +43,9 @@ public class MapTest {
 			}
 		}
 	}
-	//新建获取map中的键值方法
+	/*
+	 * 新建获取map中的键值方法
+	 */
 	public void getKey() {
 		Set<String> key = student.keySet();
 		System.out.println("学生列表如下");
@@ -51,12 +56,76 @@ public class MapTest {
 			System.out.println(getStu.id+"."+getStu.name);
 		}
 	}
+	/*
+	 * 新建删除学生信息的方法
+	 */
+	public void testRemove() {
+		System.out.println("请输入希望删除的学生id");
+		Scanner console = new Scanner(System.in);
+		while (true) {
+			//获取用户希望搜索的学生id
+			String inputId = console.next();
+			Student testStu = student.get(inputId);
+			//判断是否存在当前学生
+			if( testStu == null ) {
+				System.out.println("当前学生不存在，删除失败");
+				continue;
+			}else {
+				student.remove(inputId, testStu);
+				System.out.println("已经删除学生："+testStu.name);
+				break;
+			}
+		}
+	}
+	/*
+	 * 使用entrySet方法遍历
+	 */
+	public void testEntrySet() {
+		Set<Entry<String,Student>> entrySet = student.entrySet();
+		for(Entry<String,Student> entry : entrySet) {
+			System.out.print("学生序号为："+entry.getValue().id+"的");
+			System.out.println("姓名为："+entry.getValue().name);
+		}
+	}
+	/*
+	 * 修改学生信息
+	 */
+	public void testModify() {
+		System.out.println("请输入要修改的学生id");
+		Scanner console = new Scanner(System.in);
+		while(true) {
+			//获取用户输入的id
+			String inputId = console.next();
+			Student testStu = student.get(inputId);
+			//判断学生是否存在
+			if(testStu == null) {
+				System.out.println("学生不存在，请重新输入");
+				continue;
+			}
+			System.out.println("当前学生姓名为："+testStu.name);
+			System.out.println("请输入修改后的姓名：");
+			//获取修改后的姓名
+			String newStu = console.next();
+			Student newStudent = new Student(testStu.id,newStu);
+			//修改
+			student.put(inputId, newStudent);
+			System.out.println("修改成功");
+			break;
+		}
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MapTest mt = new MapTest();
 		mt.testPut();
 		mt.getKey();
+		//使用删除学生的方法
+		mt.testRemove();
+		//使用entry方法遍历输出
+		mt.testEntrySet();
+		//使用put方法修改
+		mt.testModify();
+		mt.testEntrySet();
 
 	}
 
